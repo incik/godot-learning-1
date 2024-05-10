@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqok6nn176osu"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_ebg7i"]
+[ext_resource type="FontFile" uid="uid://blji4lsn83oyo" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_vrodg"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_ebg7i")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="CoinCounter" type="Label" parent="UI/Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.830919, 0.540887, 0.104684, 1)
+theme_override_colors/font_shadow_color = Color(0.423326, 0.265648, 0.0264216, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("2_vrodg")
+theme_override_font_sizes/font_size = 64
+text = "X"
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="UI/Control/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.830919, 0.540887, 0.104684, 1)
+theme_override_colors/font_shadow_color = Color(0.243338, 0.145062, 0.00870149, 1)
+theme_override_colors/font_outline_color = Color(0.33528, 0.207397, 0.0170387, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 9
+theme_override_fonts/font = ExtResource("2_vrodg")
+theme_override_font_sizes/font_size = 48
+text = "MESSAGE"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="UI/Control/MarginContainer/Message"]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="UI/Control/MarginContainer/Message/Timer" to="." method="_on_timer_timeout"]
